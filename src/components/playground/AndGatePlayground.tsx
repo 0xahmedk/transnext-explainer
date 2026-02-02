@@ -73,6 +73,15 @@ export function LogicGatePlayground() {
       style={{
         backgroundColor: "#1a1b1e",
         border: "1px solid #373a40",
+        overflowX: "auto",
+      }}
+      styles={{
+        root: {
+          padding: "1rem",
+          "@media (min-width: 768px)": {
+            padding: "1.5rem",
+          },
+        },
       }}
     >
       <Stack gap="xl">
@@ -93,7 +102,7 @@ export function LogicGatePlayground() {
 
         {/* Header */}
         <Box>
-          <Group justify="space-between" mb="xs">
+          <Group justify="space-between" mb="xs" wrap="wrap" gap="xs">
             <Group gap="sm">
               <Zap size={24} color="#228be6" />
               <Text fw={600} size="lg">
@@ -117,7 +126,7 @@ export function LogicGatePlayground() {
         <Divider />
 
         {/* Main Visualization */}
-        <Group justify="center" align="center" gap="xl" grow>
+        <Group justify="center" align="center" gap="xl" wrap="wrap">
           {/* Input Controls */}
           <Stack gap="lg">
             {/* Input 1 Toggle */}
@@ -131,9 +140,18 @@ export function LogicGatePlayground() {
                 color={input1 === 1 ? "teal" : "gray"}
                 onClick={() => setInput1(input1 === 1 ? 0 : 1)}
                 style={{
-                  minHeight: 100,
-                  fontSize: 32,
+                  minHeight: 80,
+                  fontSize: 28,
                   fontWeight: 700,
+                  minWidth: 80,
+                }}
+                styles={{
+                  root: {
+                    "@media (min-width: 768px)": {
+                      minHeight: "100px",
+                      fontSize: "32px",
+                    },
+                  },
                 }}
               >
                 {input1}
@@ -154,9 +172,18 @@ export function LogicGatePlayground() {
                 color={input2 === 1 ? "teal" : "gray"}
                 onClick={() => setInput2(input2 === 1 ? 0 : 1)}
                 style={{
-                  minHeight: 100,
-                  fontSize: 32,
+                  minHeight: 80,
+                  fontSize: 28,
                   fontWeight: 700,
+                  minWidth: 80,
+                }}
+                styles={{
+                  root: {
+                    "@media (min-width: 768px)": {
+                      minHeight: "100px",
+                      fontSize: "32px",
+                    },
+                  },
                 }}
               >
                 {input2}
@@ -178,8 +205,8 @@ export function LogicGatePlayground() {
               <Box
                 style={{
                   position: "relative",
-                  width: 200,
-                  height: 200,
+                  width: "clamp(150px, 30vw, 200px)",
+                  aspectRatio: "1 / 1",
                   borderRadius: "50%",
                   border: `4px solid ${fires ? "#12b886" : "#5c5f66"}`,
                   overflow: "hidden",

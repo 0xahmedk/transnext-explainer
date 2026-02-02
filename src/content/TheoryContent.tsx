@@ -95,20 +95,25 @@ export const MultiLayerTheory = () => (
     </Text>
 
     <Text>
-      This is the birth of <Code>hidden layers</Code> — neurons that sit between
+      This is the birth of <Code>hidden layers</Code> neurons that sit between
       the inputs and the output, learning to recognize increasingly complex
       patterns.
     </Text>
 
     <List size="sm" spacing="sm" c="dimmed">
       <List.Item>
-        <strong>Layer 1 (Input):</strong> Raw pixel values
+        <strong>Input Layer:</strong> Raw image data (the pixels of a photo)
       </List.Item>
       <List.Item>
-        <strong>Layer 2 (Hidden):</strong> Edge detectors, shape recognizers
+        <strong>Hidden Layer 1:</strong> Low-level feature detectors pointy
+        ears, whiskers, tail, behavior patterns
       </List.Item>
       <List.Item>
-        <strong>Layer 3 (Output):</strong> "Is this a cat? YES/NO"
+        <strong>Hidden Layer 2:</strong> High-level abstract features "cat
+        physical traits" and "cat behavior"
+      </List.Item>
+      <List.Item>
+        <strong>Output Layer:</strong> Final decision "Is this a cat? YES/NO"
       </List.Item>
     </List>
 
@@ -141,11 +146,6 @@ export const SandboxTheory = () => (
       Now it's time to build your own network from scratch. Choose your
       architecture. Set your activation functions. Train it on any problem you
       can dream up.
-    </Text>
-
-    <Text size="sm" c="teal" fw={600}>
-      This is where Frank Rosenblatt's dream becomes yours. Welcome to the lab.
-      🧠
     </Text>
   </Stack>
 );

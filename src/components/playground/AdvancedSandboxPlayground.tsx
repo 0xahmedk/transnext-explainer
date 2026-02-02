@@ -213,9 +213,9 @@ export function AdvancedSandboxPlayground() {
         </Box>
 
         {/* Controls */}
-        <Group justify="space-between" align="center" wrap="wrap">
-          {/* Activation Function */}
-          <Box>
+        <Group justify="space-between" align="center" wrap="wrap" gap="md">
+          {/* Activation Function - Hidden on mobile, shown on desktop */}
+          <Box visibleFrom="sm">
             <Text size="xs" fw={600} c="dimmed" mb="xs">
               Activation Function
             </Text>
@@ -233,13 +233,21 @@ export function AdvancedSandboxPlayground() {
           </Box>
 
           {/* Presets */}
-          <Group gap="sm">
+          <Group gap="sm" wrap="wrap" justify="center" style={{ flex: 1 }}>
             <Button
               size="sm"
               variant="light"
               color="red"
               leftSection={<span>🍎</span>}
               onClick={() => applyPreset("apple")}
+              styles={{
+                root: {
+                  fontSize: "0.75rem",
+                  "@media (max-width: 768px)": {
+                    padding: "0.5rem 0.75rem",
+                  },
+                },
+              }}
             >
               Small & Smooth
             </Button>
@@ -249,6 +257,14 @@ export function AdvancedSandboxPlayground() {
               color="yellow"
               leftSection={<span>🍌</span>}
               onClick={() => applyPreset("banana")}
+              styles={{
+                root: {
+                  fontSize: "0.75rem",
+                  "@media (max-width: 768px)": {
+                    padding: "0.5rem 0.75rem",
+                  },
+                },
+              }}
             >
               Long & Bumpy
             </Button>
@@ -258,6 +274,14 @@ export function AdvancedSandboxPlayground() {
               color="gray"
               leftSection={<RotateCcw size={16} />}
               onClick={resetNetwork}
+              styles={{
+                root: {
+                  fontSize: "0.75rem",
+                  "@media (max-width: 768px)": {
+                    padding: "0.5rem 0.75rem",
+                  },
+                },
+              }}
             >
               Reset
             </Button>
@@ -732,7 +756,7 @@ function LiquidNeuron({
       <Box
         style={{
           width: size,
-          height: size,
+          aspectRatio: "1 / 1",
           margin: "0 auto",
           borderRadius: "50%",
           border: `3px solid ${color}`,

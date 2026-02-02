@@ -3,6 +3,5 @@ export { Connection } from "./Connection";
 export { PerceptronPlayground } from "./PerceptronPlayground";
 export { LogicGatePlayground } from "./AndGatePlayground";
 export { CatDetectorPlayground } from "./CatDetectorPlayground";
-export { FruitClassifierSandbox } from "./FruitClassifierSandbox";
 export { BeachDaySandbox } from "./BeachDaySandbox";
 export { AdvancedSandboxPlayground } from "./AdvancedSandboxPlayground";

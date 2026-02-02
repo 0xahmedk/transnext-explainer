@@ -67,6 +67,7 @@ export function ProgressNavigation() {
         transition: "right 0.3s ease",
       }}
       visibleFrom="lg"
+      hiddenFrom="base"
     >
       {/* Minimize/Expand Button */}
       <ActionIcon

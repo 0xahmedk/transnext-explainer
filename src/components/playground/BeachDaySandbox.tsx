@@ -125,9 +125,9 @@ export function BeachDaySandbox() {
         </Box>
 
         {/* Controls */}
-        <Group justify="space-between" align="center">
-          {/* Activation Function */}
-          <Box>
+        <Group justify="space-between" align="center" wrap="wrap" gap="md">
+          {/* Activation Function - Hidden on mobile, shown on desktop */}
+          <Box visibleFrom="sm">
             <Text size="xs" fw={600} c="dimmed" mb="xs">
               Activation Function
             </Text>
@@ -284,11 +284,12 @@ export function BeachDaySandbox() {
                 alignItems: "center",
                 gap: 20,
               }}
+              mb={80}
             >
               <Badge size="sm" variant="light" color="teal">
                 HIDDEN LAYER
               </Badge>
-              <Stack gap={50}>
+              <Stack>
                 <LiquidNeuron
                   label="Not Cold?"
                   sublabel="(Cold Detector)"
@@ -316,6 +317,7 @@ export function BeachDaySandbox() {
                 alignItems: "center",
                 gap: 20,
               }}
+              mb={40}
             >
               <Badge size="sm" variant="light" color="orange">
                 OUTPUT
@@ -335,8 +337,8 @@ export function BeachDaySandbox() {
         <Paper
           p="md"
           style={{
-            backgroundColor: shouldBeHigh ? "#2f9e44" : "#25262b",
-            border: `1px solid ${shouldBeHigh ? "#51cf66" : "#373a40"}`,
+            backgroundColor: shouldBeHigh ? "#2f9e4353" : "#25262b",
+            border: `1px solid ${shouldBeHigh ? "#51cf66a1" : "#373a40"}`,
             transition: "all 0.3s ease",
           }}
         >
@@ -544,7 +546,7 @@ function LiquidNeuron({
   const fillPercentage = Math.max(0, Math.min(100, value * 100));
 
   return (
-    <Box style={{ position: "relative", width: 140 }}>
+    <Box style={{ position: "relative", width: 110 }}>
       <Text size="xs" fw={600} c="dimmed" ta="center" mb={2}>
         {label}
       </Text>
@@ -555,8 +557,8 @@ function LiquidNeuron({
       {/* Neuron Circle */}
       <Box
         style={{
-          width: 100,
-          height: 100,
+          width: 70,
+          aspectRatio: "1 / 1",
           margin: "0 auto",
           borderRadius: "50%",
           border: `3px solid ${color}`,
@@ -711,8 +713,8 @@ function OutputNeuron({
       {/* Neuron Circle */}
       <motion.div
         style={{
-          width: 120,
-          height: 120,
+          width: 80,
+          height: 80,
           margin: "0 auto",
           borderRadius: "50%",
           border: `4px solid ${color}`,
@@ -802,21 +804,6 @@ function OutputNeuron({
         </Box>
 
         {/* Success Indicator */}
-        {fillPercentage > 70 && (
-          <motion.div
-            initial={{ scale: 0, rotate: -180 }}
-            animate={{ scale: 1, rotate: 0 }}
-            style={{
-              position: "absolute",
-              top: -20,
-              right: -20,
-              fontSize: 48,
-              filter: "drop-shadow(0 0 10px rgba(81, 207, 102, 0.8))",
-            }}
-          >
-            🏖️
-          </motion.div>
-        )}
       </motion.div>
 
       {/* Bias Control */}

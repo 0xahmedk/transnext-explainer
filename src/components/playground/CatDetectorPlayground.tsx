@@ -90,13 +90,21 @@ export function CatDetectorPlayground() {
       style={{
         backgroundColor: "#1a1b1e",
         border: "1px solid #373a40",
-        overflow: "visible",
+        overflow: "auto",
+      }}
+      styles={{
+        root: {
+          padding: "1rem",
+          "@media (min-width: 768px)": {
+            padding: "1.5rem",
+          },
+        },
       }}
     >
       <Stack gap="xl">
         {/* Header */}
         <Box>
-          <Group justify="space-between" mb="xs">
+          <Group justify="space-between" mb="xs" wrap="wrap" gap="xs">
             <Group gap="sm">
               <Sparkles size={24} color="#228be6" />
               <Text fw={600} size="lg">

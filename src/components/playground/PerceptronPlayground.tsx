@@ -1,19 +1,9 @@
 import { useState } from "react";
-import {
-  Paper,
-  Box,
-  Group,
-  Stack,
-  Text,
-  SegmentedControl,
-  Badge,
-  Title,
-} from "@mantine/core";
+import { Paper, Box, Group, Stack, Text, Badge, Title } from "@mantine/core";
 import { Brain } from "lucide-react";
 import { Neuron } from "./Neuron";
 import { Connection } from "./Connection";
 import { usePerceptron } from "../../hooks/usePerceptron";
-import type { ActivationFunctionType } from "../../types";
 
 /**
  * Interactive Perceptron Playground
@@ -36,30 +26,26 @@ export function PerceptronPlayground() {
   // Bias
   const [bias, setBias] = useState(-0.3);
 
-  // Activation function
-  const [activationFn, setActivationFn] =
-    useState<ActivationFunctionType>("sigmoid");
-
   // Calculate output
-  const { finalOutput, weightedSum } = usePerceptron({
+  const { finalOutput } = usePerceptron({
     inputs: [input1, input2],
     weights: [weight1, weight2],
     bias,
-    activationFunction: activationFn,
+    activationFunction: "relu",
   });
 
-  // Layout configuration (positions in pixels)
+  // Layout configuration (positions in pixels) - Responsive
   const layout = {
-    neuronSize: 100,
+    neuronSize: 80, // Smaller base size for mobile
     spacing: {
-      horizontal: 300,
-      vertical: 150,
+      horizontal: 250, // Reduced for mobile
+      vertical: 120,
     },
     padding: {
-      top: 80,
-      left: 100,
-      right: 100,
-      bottom: 60,
+      top: 60,
+      left: 60,
+      right: 60,
+      bottom: 40,
     },
   };
 
@@ -126,12 +112,21 @@ export function PerceptronPlayground() {
       {/* Main Playground */}
       <Paper
         shadow="xl"
-        p="xl"
+        p="md"
         radius="lg"
         style={{
           backgroundColor: "#1a1b1e",
           border: "1px solid #373a40",
-          overflow: "visible",
+          overflow: "auto",
+          display: "flex",
+          justifyContent: "center",
+        }}
+        styles={{
+          root: {
+            "@media (min-width: 768px)": {
+              padding: "1.5rem",
+            },
+          },
         }}
       >
         <Box
@@ -139,7 +134,6 @@ export function PerceptronPlayground() {
             position: "relative",
             width: canvasWidth,
             height: canvasHeight,
-            margin: "0 auto",
           }}
         >
           {/* Connection Lines Layer */}
@@ -201,7 +195,11 @@ export function PerceptronPlayground() {
                 step={0.01}
                 value={input1}
                 onChange={(e) => setInput1(parseFloat(e.target.value))}
-                style={{ width: "100%" }}
+                style={{
+                  width: "100%",
+                  height: "8px",
+                  cursor: "pointer",
+                }}
               />
             </Box>
           </Box>
@@ -231,7 +229,11 @@ export function PerceptronPlayground() {
                 step={0.01}
                 value={input2}
                 onChange={(e) => setInput2(parseFloat(e.target.value))}
-                style={{ width: "100%" }}
+                style={{
+                  width: "100%",
+                  height: "8px",
+                  cursor: "pointer",
+                }}
               />
             </Box>
           </Box>
@@ -259,58 +261,6 @@ export function PerceptronPlayground() {
       </Paper>
 
       {/* Controls */}
-      <Paper p="md" withBorder>
-        <Stack gap="md">
-          <Group justify="space-between">
-            <Text fw={600}>Activation Function</Text>
-            <SegmentedControl
-              value={activationFn}
-              onChange={(value) =>
-                setActivationFn(value as ActivationFunctionType)
-              }
-              data={[
-                { label: "Sigmoid", value: "sigmoid" },
-                { label: "Step", value: "step" },
-                { label: "ReLU", value: "relu" },
-              ]}
-            />
-          </Group>
-
-          {/* Output Information */}
-          <Box
-            p="sm"
-            style={{
-              backgroundColor: "#25262b",
-              borderRadius: 8,
-              border: "1px solid #373a40",
-            }}
-          >
-            <Stack gap="xs">
-              <Group justify="space-between">
-                <Text size="sm" c="dimmed">
-                  Weighted Sum:
-                </Text>
-                <Text size="sm" fw={700} ff="monospace" c="blue">
-                  {weightedSum.toFixed(4)}
-                </Text>
-              </Group>
-              <Group justify="space-between">
-                <Text size="sm" c="dimmed">
-                  Final Output:
-                </Text>
-                <Text size="lg" fw={700} ff="monospace" c="teal">
-                  {finalOutput.toFixed(4)}
-                </Text>
-              </Group>
-              <Text size="xs" c="dimmed" ta="center" mt="xs">
-                ({input1.toFixed(2)} × {weight1.toFixed(2)}) + (
-                {input2.toFixed(2)} × {weight2.toFixed(2)}) + {bias.toFixed(2)}{" "}
-                = {weightedSum.toFixed(2)}
-              </Text>
-            </Stack>
-          </Box>
-        </Stack>
-      </Paper>
     </Stack>
   );
 }

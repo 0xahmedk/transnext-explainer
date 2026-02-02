@@ -75,7 +75,7 @@ export function Section({
             <Stack gap="xl">
               {/* Theory Section */}
               <Paper
-                p="xl"
+                p={{ base: "md", sm: "xl" }}
                 radius="lg"
                 style={{
                   backgroundColor: "#1a1b1e",
@@ -104,11 +104,11 @@ export function Section({
               <Box>{playground}</Box>
             </Stack>
           ) : (
-            <Grid gutter="xl">
-              {/* Theory Section */}
-              <Grid.Col span={{ base: 12, lg: 5 }}>
+            <Grid gutter={{ base: "md", sm: "xl" }}>
+              {/* Theory Section - Mobile-first: span 12 (full width), Desktop: span 6 */}
+              <Grid.Col span={{ base: 12, md: 6 }}>
                 <Paper
-                  p="xl"
+                  p={{ base: "md", sm: "xl" }}
                   radius="lg"
                   style={{
                     backgroundColor: "#1a1b1e",
@@ -135,16 +135,19 @@ export function Section({
                 </Paper>
               </Grid.Col>
 
-              {/* Playground Section */}
-              <Grid.Col span={{ base: 12, lg: 7 }}>
+              {/* Playground Section - Mobile-first: span 12 (full width), Desktop: span 6 */}
+              <Grid.Col span={{ base: 12, md: 6 }}>
                 <Box
                   style={{
                     position: "sticky",
                     top: 100,
                   }}
+                  visibleFrom="md"
                 >
                   {playground}
                 </Box>
+                {/* Non-sticky on mobile */}
+                <Box hiddenFrom="md">{playground}</Box>
               </Grid.Col>
             </Grid>
           )}

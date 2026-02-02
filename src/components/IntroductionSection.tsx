@@ -1,14 +1,16 @@
 import {
   Box,
   Container,
-  Title,
   Text,
   Stack,
   Paper,
   Code,
   List,
+  Image,
+  Title,
 } from "@mantine/core";
-import { Sparkles, Brain } from "lucide-react";
+import { Sparkles } from "lucide-react";
+import percept_logo from "../assets/percept_logo.png";
 
 /**
  * Hero/Introduction Section
@@ -27,39 +29,34 @@ export function IntroductionSection() {
     >
       <Container size="md">
         <Stack gap="xl" align="center">
-          {/* Icon */}
-          <Box
-            style={{
-              width: 80,
-              height: 80,
-              borderRadius: "50%",
-              background: "linear-gradient(135deg, #228be6 0%, #12b886 100%)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <Brain size={40} color="white" />
-          </Box>
+          <Stack gap="xl" align="center" mb={"lg"}>
+            <Image
+              src={percept_logo}
+              alt="Percept It! Logo"
+              style={{ width: 100, height: 100 }}
+            />
 
-          {/* Main Title */}
-          <Stack gap="md" align="center">
-            <Title
-              order={1}
-              size={48}
-              ta="center"
-              style={{
-                background: "linear-gradient(135deg, #228be6 0%, #12b886 100%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
-            >
-              Welcome to the Lab
+            {/* Main Title */}
+            <Title order={1} size={38} ta="center">
+              NEURAL NETWORKS
             </Title>
-            <Text size="xl" c="dimmed" ta="center" maw={600}>
-              An interactive journey from a single neuron to a screaming cat
-              detector
+            <Text size="sm" c="dimmed" ta="center">
+              by{" "}
+              <a
+                href="https://www.linkedin.com/in/0xahmedkhan"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  color: "inherit",
+                  textDecoration: "underline",
+                  textDecorationStyle: "dotted",
+                  transition: "color 0.2s",
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "#228be6")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "inherit")}
+              >
+                Ahmed Khan
+              </a>
             </Text>
           </Stack>
 
@@ -76,14 +73,54 @@ export function IntroductionSection() {
             <Stack gap="lg">
               <Box>
                 <Text size="lg" mb="md">
-                  In 1958, Frank Rosenblatt invented the <Code>Perceptron</Code>{" "}
-                  — the first artificial neuron that could learn. Today, we're
-                  going to build one from scratch.
+                  In 1958, Frank Rosenblatt invented the Perceptron the first
+                  artificial neuron that could learn. This invention bridged the
+                  gap between biological inspiration and digital logic, proving
+                  that a simple mathematical model could mimic the way human
+                  neurons process sensory inputs.
                 </Text>
-                <Text size="md" c="dimmed">
-                  But here's the twist: we're not just going to <em>read</em>{" "}
-                  about it. We're going to <strong>feel</strong> it. Touch it.
-                  Break it. Watch it learn.
+                <Text size="md" mb={"md"}>
+                  Today, we're going to build one from scratch, think about your
+                  morning coffee. Your 5 senses are the ultimate input sensors:
+                  <List>
+                    <List.Item>
+                      Sight: The steam rising from the mug.{" "}
+                    </List.Item>
+                    <List.Item>
+                      Touch: The warmth of the ceramic against your palm.
+                    </List.Item>
+                    <List.Item>
+                      Smell: That unmistakable roasted aroma.
+                    </List.Item>
+                    <List.Item>
+                      Sound: The gentle clink of the spoon against the mug.
+                    </List.Item>
+                    <List.Item>
+                      Taste: The rich, bitter flavor of the coffee.
+                    </List.Item>
+                  </List>
+                </Text>
+
+                <Text size="md">
+                  Your body doesn't just "have" these sensations; it processes
+                  them. Millions of biological neurons are firing right now,
+                  taking those inputs and "weighted" signals, like how a burning
+                  hot mug (High Input) might override the nice smell, and
+                  sending a message to your brain: "Drink this now" or "Wait,
+                  it's too hot!".
+                </Text>
+                <Text size="md" mt={"sm"}>
+                  Artificial Neural Networks (ANNs) are just a simplified,
+                  digital version of this biological masterpiece. We take Inputs
+                  (like our senses), multiply them by Weights (how much we care
+                  about that sense), and add a Bias (our internal threshold). If
+                  the final "Sum" is high enough, the neuron "fires," just like
+                  the ones in your head.
+                </Text>
+                <Text size="md" mt={"sm"}>
+                  Experiment 1: Below, you'll see your first digital neuron.
+                  It’s set up to act as a Logic Gate. Can you figure out how to
+                  make it "fire" using only the inputs provided?
                 </Text>
               </Box>
 
