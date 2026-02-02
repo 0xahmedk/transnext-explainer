@@ -12,13 +12,8 @@ import {
   Popover,
 } from "@mantine/core";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, Settings, RotateCcw } from "lucide-react";
+import { Settings, RotateCcw } from "lucide-react";
 import type { ActivationFunctionType } from "../../types";
-
-interface NeuronValue {
-  value: number;
-  bias: number;
-}
 
 /**
  * Advanced Sandbox Playground

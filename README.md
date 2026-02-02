@@ -4,6 +4,8 @@
 
 Built with a focus on "feeling the math," Percept uses a unique **liquid-fill metaphor** to visualize how data flows through a neural network.
 
+🔗 **[Live Demo](https://0xahmedk.github.io/percept/)**
+
 ---
 
 ## 🚀 Key Features
