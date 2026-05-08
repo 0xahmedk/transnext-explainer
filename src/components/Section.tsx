@@ -21,12 +21,6 @@ interface SectionProps {
   layout?: "horizontal" | "vertical";
 }
 
-/**
- * Section Component
- *
- * A responsive section with theory content on the left/top
- * and an interactive playground on the right/bottom.
- */
 export function Section({
   id,
   stage,
@@ -43,110 +37,90 @@ export function Section({
       py={80}
       style={{
         minHeight: "100vh",
-        borderBottom: "1px solid #373a40",
+        borderBottom: "1px solid #2a2a2e",
       }}
     >
       <Container size="xl">
         <Stack gap="xl">
           {/* Section Header */}
           <Box>
-            <Text size="sm" fw={600} c="dimmed" mb="xs" tt="uppercase">
+            <Text
+              size="sm"
+              fw={600}
+              mb="xs"
+              tt="uppercase"
+              style={{ color: "#e8a020", letterSpacing: "0.08em" }}
+            >
               {stage}
             </Text>
             <Title
               order={2}
               mb="xs"
-              style={{
-                background: "linear-gradient(135deg, #228be6 0%, #12b886 100%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
+              style={{ color: "#ffffff", fontWeight: 700 }}
             >
               {title}
             </Title>
-            <Text size="lg" c="dimmed">
+            <Text size="lg" style={{ color: "#a0a0a0" }}>
               {subtitle}
             </Text>
           </Box>
 
-          {/* Content Grid: Theory + Playground */}
           {layout === "vertical" ? (
             <Stack gap="xl">
-              {/* Theory Section */}
               <Paper
                 p={{ base: "md", sm: "xl" }}
                 radius="lg"
                 style={{
-                  backgroundColor: "#1a1b1e",
-                  border: "1px solid #373a40",
+                  backgroundColor: "#141417",
+                  border: "1px solid #2a2a2e",
                 }}
               >
                 <Stack gap="lg">
                   <Box
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: 8,
-                    }}
+                    style={{ display: "flex", alignItems: "center", gap: 8 }}
                   >
-                    <Zap size={20} color="#228be6" />
-                    <Text fw={600} size="lg">
-                      Theory
+                    <Zap size={18} color="#e8a020" />
+                    <Text fw={600} size="md" c="white">
+                      Intuition
                     </Text>
                   </Box>
-                  <Divider />
+                  <Divider color="#2a2a2e" />
                   <Box>{theory}</Box>
                 </Stack>
               </Paper>
-
-              {/* Playground Section */}
               <Box>{playground}</Box>
             </Stack>
           ) : (
             <Grid gutter={{ base: "md", sm: "xl" }}>
-              {/* Theory Section - Mobile-first: span 12 (full width), Desktop: span 6 */}
               <Grid.Col span={{ base: 12, md: 6 }}>
                 <Paper
                   p={{ base: "md", sm: "xl" }}
                   radius="lg"
                   style={{
-                    backgroundColor: "#1a1b1e",
-                    border: "1px solid #373a40",
+                    backgroundColor: "#141417",
+                    border: "1px solid #2a2a2e",
                     height: "100%",
                   }}
                 >
                   <Stack gap="lg">
                     <Box
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: 8,
-                      }}
+                      style={{ display: "flex", alignItems: "center", gap: 8 }}
                     >
-                      <Zap size={20} color="#228be6" />
-                      <Text fw={600} size="lg">
-                        Theory
+                      <Zap size={18} color="#e8a020" />
+                      <Text fw={600} size="md" c="white">
+                        Intuition
                       </Text>
                     </Box>
-                    <Divider />
+                    <Divider color="#2a2a2e" />
                     <Box>{theory}</Box>
                   </Stack>
                 </Paper>
               </Grid.Col>
 
-              {/* Playground Section - Mobile-first: span 12 (full width), Desktop: span 6 */}
               <Grid.Col span={{ base: 12, md: 6 }}>
-                <Box
-                  style={{
-                    position: "sticky",
-                    top: 100,
-                  }}
-                  visibleFrom="md"
-                >
+                <Box style={{ position: "sticky", top: 100 }} visibleFrom="md">
                   {playground}
                 </Box>
-                {/* Non-sticky on mobile */}
                 <Box hiddenFrom="md">{playground}</Box>
               </Grid.Col>
             </Grid>

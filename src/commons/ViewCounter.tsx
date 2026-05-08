@@ -44,7 +44,7 @@ export function ViewCounter() {
         });
         console.log("Calling counter.up...");
         const result = (await counter.up(
-          "percept",
+          "transnext",
         )) as unknown as CounterV2Response;
         console.log("Counter result:", result);
 

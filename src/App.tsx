@@ -1,32 +1,20 @@
 import { useState } from "react";
-import {
-  Container,
-  Text,
-  Stack,
-  Box,
-  Image,
-  Alert,
-  Paper,
-} from "@mantine/core";
+import { Container, Text, Stack, Box, Alert, Paper } from "@mantine/core";
 import { Info } from "lucide-react";
 
 import "./App.css";
-import percept_logo from "./assets/percept_logo.png";
 import { ProgressNavigation } from "./components/ProgressNavigation";
 import { MobileNavigation } from "./components/MobileNavigation";
 import { IntroductionSection } from "./components/IntroductionSection";
 import { Section } from "./components/Section";
-import {
-  LogicGatesTheory,
-  WeightsBiasTheory,
-  MultiLayerTheory,
-  SandboxTheory,
-} from "./content/TheoryContent";
-import { LogicGatePlayground } from "./components/playground/AndGatePlayground";
-import { CatDetectorPlayground } from "./components/playground/CatDetectorPlayground";
-import { BeachDaySandbox } from "./components/playground/BeachDaySandbox";
-import { PerceptronPlayground } from "./components/playground";
 import { ViewCounter } from "./commons/ViewCounter";
+import { StandardViTTheory } from "./components/StandardViTTheory";
+import { GridViTPlayground } from "./components/GridViTPlayground";
+import { AggregatedAttentionTheory } from "./components/AggregatedAttentionTheory";
+import { FovealLensPlayground } from "./components/FovealLensPlayground";
+import { ConvGLUTheory } from "./components/ConvGLUTheory";
+import { ConvGLUPlayground } from "./components/ConvGLUPlayground";
+import ViewAnalytics from "./commons/ViewAnalytics";
 
 function App() {
   // Mobile warning state
@@ -61,168 +49,190 @@ function App() {
         {/* Introduction */}
         <IntroductionSection />
 
-        {/* Stage 1: Logic Gates */}
+        {/* Section 0: The Evolution of Vision */}
         <Section
-          id="logic-gates"
-          stage="Stage 1"
-          title="The Birth of Logic"
-          subtitle="From binary decisions to intelligent behavior"
-          theory={<LogicGatesTheory />}
-          playground={<LogicGatePlayground />}
+          id="section-0"
+          stage="Section 0"
+          title="The Evolution of Vision"
+          subtitle="From uniform grid attention to biologically inspired foveal awareness"
+          theory={<StandardViTTheory />}
+          playground={<GridViTPlayground />}
         />
 
-        {/* Stage 2: Weights & Bias */}
+        {/* Section 2: The TransNeXt Breakthrough */}
         <Section
-          id="weights-bias"
-          stage="Stage 2"
-          title="The Tuning Knobs"
-          subtitle="Understanding how neurons learn to decide"
-          theory={<WeightsBiasTheory />}
-          playground={<PerceptronPlayground />}
+          id="section-2"
+          stage="Section 2"
+          title="The TransNeXt Breakthrough"
+          subtitle="Aggregated Attention, foveal-inspired query-key interaction with a fixed peripheral pool"
+          theory={<AggregatedAttentionTheory />}
+          playground={<FovealLensPlayground />}
         />
 
-        {/* Stage 3: Multi-Layer */}
+        {/* Section 3: ConvGLU */}
         <Section
-          id="multi-layer"
-          stage="Stage 3"
-          title="The Power of Layers"
-          subtitle="When neurons work together, magic happens"
-          theory={<MultiLayerTheory />}
-          playground={<CatDetectorPlayground />}
-          layout="vertical"
-        />
-
-        {/* Stage 4: Sandbox */}
-        <Section
-          id="sandbox"
-          stage="Stage 4"
-          title="The Perceptron Lab"
-          subtitle="Build your own neural network from scratch"
-          theory={<SandboxTheory />}
-          playground={<BeachDaySandbox />}
-          layout="vertical"
+          id="section-3"
+          stage="Section 3"
+          title="ConvGLU: The Spatial Modeling Gate"
+          subtitle="Replacing position-blind MLPs with spatially-aware gated convolution"
+          theory={<ConvGLUTheory />}
+          playground={<ConvGLUPlayground />}
         />
 
         {/* Closing Thoughts Section */}
-        <Box
-          style={{
-            padding: "4rem 0",
-            borderTop: "1px solid var(--mantine-color-dark-4)",
-          }}
-        >
+        <Box style={{ padding: "4rem 0", borderTop: "1px solid #2a2a2e" }}>
           <Container size="md">
-            <Paper
-              p="xl"
-              radius="lg"
-              style={{
-                backgroundColor: "#1a1b1e",
-                border: "1px solid #373a40",
-              }}
-            >
-              <Stack gap="lg">
-                <Text c="dimmed" size="md" style={{ lineHeight: 1.8 }}>
-                  What you just explored isn't just a historical curiosity, it's
-                  the foundation of the AI revolution we're living through right
-                  now. The simple perceptron you played with, sparked an idea
-                  that would eventually reshape our world.
-                </Text>
-
-                <Text c="dimmed" size="md" style={{ lineHeight: 1.8 }}>
-                  Every AI breakthrough you hear about, ChatGPT, image
-                  generators, self-driving cars, medical diagnosis systems, they
-                  all build on this same fundamental principle: neurons that
-                  learn by adjusting weights and biases. Today's neural networks
-                  are just billions of these neurons working together, but the
-                  core concept remains unchanged.
-                </Text>
-
-                <Text c="dimmed" size="md" style={{ lineHeight: 1.8 }}>
-                  By understanding perceptrons, you've grasped the beating heart
-                  of artificial intelligence. You now know that AI isn't magic,
-                  it's math, activation functions, and clever arrangements of
-                  simple units that can approximate almost any pattern. That's
-                  both humbling and empowering.
-                </Text>
-
+            <Stack gap="xl">
+              {/* Title */}
+              <Box>
                 <Text
-                  c="dimmed"
-                  fw={500}
-                  ta="center"
-                  style={{
-                    marginTop: "1rem",
-                  }}
+                  size="sm"
+                  fw={600}
+                  tt="uppercase"
+                  mb="xs"
+                  style={{ color: "#e8a020", letterSpacing: "0.08em" }}
                 >
-                  The future of AI is being written right now. And you've just
-                  learned its alphabet.
+                  Closing Thoughts
                 </Text>
-              </Stack>
-            </Paper>
-          </Container>
-        </Box>
-
-        {/* Buy Me a Coffee Section */}
-        <Box
-          style={{
-            padding: "4rem 0",
-            textAlign: "center",
-            borderTop: "1px solid var(--mantine-color-dark-4)",
-          }}
-        >
-          <Container size="sm">
-            <Stack gap="xl" align="center">
-              <Stack gap="md" align="center">
-                <Text size="md" c="dimmed" maw={500} ta="center">
-                  If this interactive journey through neural networks sparked
-                  some connections in your brain, consider fueling mine with
-                  some caffeine
+                <Text size="xl" fw={700} c="white" mb="xs">
+                  What TransNeXt Gets Right, and What Remains Open
                 </Text>
-              </Stack>
+              </Box>
 
-              <a
-                href="https://buymeacoffee.com/ahmedpro"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ textDecoration: "none" }}
+              <Paper
+                p="xl"
+                radius="lg"
+                style={{
+                  backgroundColor: "#141417",
+                  border: "1px solid #2a2a2e",
+                }}
               >
-                <Box
-                  component="button"
-                  style={{
-                    padding: "1rem 1rem",
-                    backgroundColor: "#FFDD00",
-                    border: "none",
-                    borderRadius: "12px",
-                    color: "#000",
-                    fontWeight: 700,
-                    fontSize: "1.1rem",
-                    cursor: "pointer",
-                    transition: "all 0.3s ease",
-                    boxShadow: "0 4px 14px rgba(255, 221, 0, 0.4)",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "0.5rem",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = "translateY(-2px)";
-                    e.currentTarget.style.boxShadow =
-                      "0 6px 20px rgba(255, 221, 0, 0.6)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = "translateY(0)";
-                    e.currentTarget.style.boxShadow =
-                      "0 4px 14px rgba(255, 221, 0, 0.4)";
-                  }}
+                <Stack gap="lg">
+                  <Text size="md" style={{ lineHeight: 1.9, color: "#a0a0a0" }}>
+                    TransNeXt makes a compelling argument: the uniform-attention
+                    paradigm of standard ViTs is a design choice, not a
+                    necessity. By borrowing two ideas from biology and signal
+                    processing, a{" "}
+                    <Text span c="white" fw={500}>
+                      foveal attention field
+                    </Text>{" "}
+                    that prioritises nearby tokens, and a{" "}
+                    <Text span c="white" fw={500}>
+                      spatially-aware gating function
+                    </Text>{" "}
+                    that replaces position-blind MLPs, the architecture achieves
+                    sub-quadratic complexity without sacrificing the global
+                    receptive field that makes transformers powerful. The fixed
+                    7×7 peripheral pool is particularly elegant: it turns an
+                    O(N) problem into an O(1) constant, meaning efficiency gains
+                    compound as image resolution grows.
+                  </Text>
+
+                  <Text size="md" style={{ lineHeight: 1.9, color: "#a0a0a0" }}>
+                    In practice, TransNeXt reported strong results on ImageNet
+                    classification and ADE20K segmentation at the time of its
+                    CVPR 2024 publication, with accuracy competitive with much
+                    larger models. The spatial robustness experiments, where
+                    TransNeXt maintained accuracy under mild image shifts that
+                    degraded standard ViTs, suggest the architectural inductive
+                    biases are doing genuine work, not just adding parameters.
+                  </Text>
+                </Stack>
+              </Paper>
+
+              {/* Limitations */}
+              <Paper
+                p="xl"
+                radius="lg"
+                style={{
+                  backgroundColor: "#141417",
+                  border: "1px solid rgba(239, 68, 68, 0.2)",
+                }}
+              >
+                <Text
+                  size="sm"
+                  fw={700}
+                  mb="md"
+                  style={{ letterSpacing: "0.1em", color: "#ef4444" }}
                 >
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                  >
-                    <path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.11 0 2-.9 2-2V5c0-1.11-.89-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4v-2z" />
-                  </svg>
-                  Buy Ahmed some activation
-                </Box>
-              </a>
+                  LIMITATIONS & OPEN QUESTIONS
+                </Text>
+                <Stack gap={14}>
+                  {[
+                    {
+                      title: "Fixed foveal radius and pool size",
+                      body: "The foveal radius K and the 7×7 peripheral grid are hand-tuned hyperparameters. Whether these are truly optimal, or whether a learned, content-adaptive fovea would outperform them, is an open question the paper does not fully address.",
+                    },
+                    {
+                      title: "Scope limited to dense prediction tasks",
+                      body: 'TransNeXt was evaluated primarily on image classification and segmentation. Its behaviour on video, multi-modal, or language-conditioned vision tasks is not established. The foveal metaphor may not transfer cleanly when the "query" is not a spatial patch.',
+                    },
+                    {
+                      title: "ConvGLU interaction not fully ablated",
+                      body: "Aggregated Attention and ConvGLU are presented together, making it difficult to disentangle their individual contributions. The ablations in the paper show each component helps, but their interaction, whether they are complementary or partially redundant, is not deeply analysed.",
+                    },
+                    {
+                      title: "Simulation simplifications in this explainer",
+                      body: "The interactive demos here discretise the foveal region with a circular threshold and use a uniform 3×3 pool for visualisation. The actual TransNeXt implementation uses window-partitioned attention with learnable relative position biases, the real mechanism is richer than what can be shown in a 2D canvas demo.",
+                    },
+                  ].map(({ title, body }) => (
+                    <Box
+                      key={title}
+                      style={{
+                        display: "flex",
+                        gap: 10,
+                        alignItems: "flex-start",
+                      }}
+                    >
+                      <Text
+                        size="sm"
+                        fw={700}
+                        style={{
+                          color: "#ef4444",
+                          flexShrink: 0,
+                          paddingTop: 3,
+                        }}
+                      >
+                        —
+                      </Text>
+                      <Box>
+                        <Text
+                          size="sm"
+                          fw={600}
+                          mb={3}
+                          style={{ color: "#c0c0c0" }}
+                        >
+                          {title}
+                        </Text>
+                        <Text
+                          size="sm"
+                          style={{ color: "#a0a0a0", lineHeight: 1.75 }}
+                        >
+                          {body}
+                        </Text>
+                      </Box>
+                    </Box>
+                  ))}
+                </Stack>
+              </Paper>
+
+              <Text
+                size="md"
+                style={{
+                  lineHeight: 1.9,
+                  color: "#707070",
+                  fontStyle: "italic",
+                }}
+              >
+                The broader lesson from TransNeXt is that Vision Transformers
+                still have room to absorb structure from the domain they operate
+                in. Global, uniform attention is a reasonable default, but
+                explicitly modelling the asymmetry between near and far context,
+                and giving the FFN a sense of spatial neighbourhood, appears to
+                be worth the complexity. Whether future architectures take this
+                further, perhaps with fully learned, dynamic foveal regions,
+                remains an interesting direction.
+              </Text>
             </Stack>
           </Container>
         </Box>
@@ -232,125 +242,54 @@ function App() {
       <Box
         component="footer"
         style={{
-          borderTop: "1px solid var(--mantine-color-dark-4)",
-          padding: "2rem 0",
+          borderTop: "1px solid #2a2a2e",
+          padding: "2.5rem 0",
         }}
       >
         <Container size="lg">
-          <Stack gap="lg" align="center">
-            <Box
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: 8,
-              }}
-            >
-              <Image
-                src={percept_logo}
-                alt="PERCEPT Logo"
-                style={{ width: 20, height: 20 }}
-              />
-              <Text size="sm" c="dimmed">
-                Built with ❤️ by Ahmed
-              </Text>
-            </Box>
-
-            {/* Social Icons */}
-            <Stack gap="sm" align="center">
-              <Text size="xs" c="dimmed">
-                find Ahmed here 👇
-              </Text>
-              <Box
+          <Stack gap="md" align="center">
+            {/* Author */}
+            <Box style={{ textAlign: "center" }}>
+              <a
+                href="https://0xahmedk.github.io/me"
+                target="_blank"
+                rel="noopener noreferrer"
                 style={{
-                  display: "flex",
-                  gap: 16,
-                  flexWrap: "wrap",
-                  justifyContent: "center",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 6,
+                  padding: "5px 14px",
+                  background: "rgba(232, 160, 32, 0.08)",
+                  border: "1px solid rgba(232, 160, 32, 0.3)",
+                  borderRadius: 20,
+                  color: "#e8a020",
+                  fontSize: 12,
+                  fontWeight: 600,
+                  textDecoration: "none",
+                  letterSpacing: "0.04em",
+                  transition: "background 0.2s, border-color 0.2s",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLAnchorElement).style.background =
+                    "rgba(232, 160, 32, 0.15)";
+                  (e.currentTarget as HTMLAnchorElement).style.borderColor =
+                    "rgba(232, 160, 32, 0.55)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLAnchorElement).style.background =
+                    "rgba(232, 160, 32, 0.08)";
+                  (e.currentTarget as HTMLAnchorElement).style.borderColor =
+                    "rgba(232, 160, 32, 0.3)";
                 }}
               >
-                <a
-                  href="https://github.com/0xahmedk"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="GitHub"
-                  style={{ color: "inherit", transition: "opacity 0.2s" }}
-                  onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.7")}
-                  onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
-                >
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path d="M12 .297a12 12 0 00-3.79 23.4c.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.6-4.04-1.6-.55-1.4-1.34-1.77-1.34-1.77-1.09-.75.08-.74.08-.74 1.2.08 1.83 1.24 1.83 1.24 1.07 1.83 2.8 1.3 3.48.99.11-.78.42-1.3.76-1.6-2.66-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 016 0c2.28-1.55 3.29-1.23 3.29-1.23.66 1.65.24 2.87.12 3.17.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.63-5.49 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.69.82.58A12 12 0 0012 .297z" />
-                  </svg>
-                </a>
+                More by this author ↗
+              </a>
+            </Box>
 
-                <a
-                  href="https://www.linkedin.com/in/0xahmedkhan"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="LinkedIn"
-                  style={{ color: "inherit", transition: "opacity 0.2s" }}
-                  onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.7")}
-                  onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
-                >
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path d="M4.98 3.5C4.98 4.88 3.86 6 2.49 6S0 4.88 0 3.5 1.12 1 2.49 1s2.49 1.12 2.49 2.5zM.22 8h4.54V24H.22zM8.98 8h4.36v2.2h.06c.61-1.16 2.1-2.4 4.33-2.4 4.63 0 5.48 3.05 5.48 7.02V24h-4.54v-7.07c0-1.69-.03-3.86-2.36-3.86-2.37 0-2.73 1.85-2.73 3.75V24H8.98V8z" />
-                  </svg>
-                </a>
-
-                <a
-                  href="https://www.instagram.com/0xahmedk"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Instagram"
-                  style={{ color: "inherit", transition: "opacity 0.2s" }}
-                  onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.7")}
-                  onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
-                >
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path d="M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7zm0 2h10c1.66 0 3 1.34 3 3v10c0 1.66-1.34 3-3 3H7c-1.66 0-3-1.34-3-3V7c0-1.66 1.34-3 3-3zm8 1.5a1.25 1.25 0 11-.001 2.501A1.25 1.25 0 0115 5.5zM12 7.5a4.5 4.5 0 100 9 4.5 4.5 0 000-9zm0 2a2.5 2.5 0 110 5 2.5 2.5 0 010-5z" />
-                  </svg>
-                </a>
-
-                <a
-                  href="https://medium.com/@0xahmedkhan"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Medium"
-                  style={{ color: "inherit", transition: "opacity 0.2s" }}
-                  onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.7")}
-                  onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
-                >
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path d="M2 6.5v11L8 12l-6-5.5zM10 6.5l6.5 11H22V6.5H10zM10 6.5h12" />
-                  </svg>
-                </a>
-              </Box>
-            </Stack>
+            <Box style={{ width: 1, height: 24, background: "#2a2a2e" }} />
 
             <ViewCounter />
+            <ViewAnalytics />
           </Stack>
         </Container>
       </Box>

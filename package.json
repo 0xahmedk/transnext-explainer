@@ -1,9 +1,9 @@
 {
-  "name": "percept",
+  "name": "vits-and-transnext",
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://0xahmedk.github.io/percept",
+  "homepage": "https://0xahmedk.github.io/vits-and-transnext",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",

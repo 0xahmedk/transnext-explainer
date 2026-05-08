@@ -4,7 +4,6 @@ import {
   Progress as MantineProgress,
   Stack,
   Group,
-  Badge,
   ActionIcon,
 } from "@mantine/core";
 import { useState, useEffect } from "react";
@@ -18,22 +17,31 @@ interface Section {
 }
 
 const sections: Section[] = [
-  { id: "logic-gates", title: "Stage 1", subtitle: "The Birth of Logic" },
-  { id: "weights-bias", title: "Stage 2", subtitle: "The Tuning Knobs" },
-  { id: "multi-layer", title: "Stage 3", subtitle: "The Power of Layers" },
-  { id: "sandbox", title: "Stage 4", subtitle: "The Perceptron Lab" },
+  {
+    id: "section-0",
+    title: "The Evolution of Vision",
+    subtitle: "Standard ViT & Global Attention",
+  },
+  {
+    id: "section-2",
+    title: "The TransNeXt Breakthrough",
+    subtitle: "Aggregated Attention & Foveal Lens",
+  },
+  {
+    id: "section-3",
+    title: "ConvGLU: Spatial Gate",
+    subtitle: "Depth-wise Conv meets Gated Linear Units",
+  },
 ];
 
 export function ProgressNavigation() {
-  const [activeSection, setActiveSection] = useState<string>("logic-gates");
+  const [activeSection, setActiveSection] = useState<string>("section-0");
   const [progress, setProgress] = useState(0);
   const [isMinimized, setIsMinimized] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY + window.innerHeight / 3;
-
-      // Find which section is currently in view
       for (let i = sections.length - 1; i >= 0; i--) {
         const element = document.getElementById(sections[i].id);
         if (element && element.offsetTop <= scrollPosition) {
@@ -43,17 +51,15 @@ export function ProgressNavigation() {
         }
       }
     };
-
     window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Initial check
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+    document
+      .getElementById(id)
+      ?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   return (
@@ -69,7 +75,6 @@ export function ProgressNavigation() {
       visibleFrom="lg"
       hiddenFrom="base"
     >
-      {/* Minimize/Expand Button */}
       <ActionIcon
         variant="filled"
         size="lg"
@@ -79,7 +84,7 @@ export function ProgressNavigation() {
           left: -20,
           top: 13,
           borderRadius: "50%",
-          border: "1px solid #373a40",
+          border: "1px solid #2a2a2e",
         }}
         onClick={() => setIsMinimized(!isMinimized)}
       >
@@ -89,8 +94,8 @@ export function ProgressNavigation() {
       <Box
         p="lg"
         style={{
-          backgroundColor: "#1a1b1e",
-          border: "1px solid #373a40",
+          backgroundColor: "#141417",
+          border: "1px solid #2a2a2e",
           borderRadius: 12,
         }}
       >
@@ -103,19 +108,37 @@ export function ProgressNavigation() {
               transition={{ duration: 0.2 }}
             >
               <Group justify="space-between" mb="xs">
-                <Text size="sm" fw={600} c="dimmed">
+                <Text
+                  size="sm"
+                  fw={600}
+                  style={{ color: "#707070", letterSpacing: "0.06em" }}
+                >
                   YOUR JOURNEY
                 </Text>
-                <Badge variant="light" size="sm">
+                <Text
+                  size="xs"
+                  fw={700}
+                  style={{
+                    color: "#e8a020",
+                    background: "rgba(232, 160, 32, 0.1)",
+                    border: "1px solid rgba(232, 160, 32, 0.25)",
+                    padding: "1px 8px",
+                    borderRadius: 10,
+                    fontFamily: "monospace",
+                  }}
+                >
                   {Math.round(progress)}%
-                </Badge>
+                </Text>
               </Group>
 
               <MantineProgress
                 value={progress}
                 size="sm"
                 mb="lg"
-                color="teal"
+                styles={{
+                  section: { backgroundColor: "#e8a020" },
+                  root: { backgroundColor: "#2a2a2e" },
+                }}
               />
 
               <Stack gap="md">
@@ -134,27 +157,33 @@ export function ProgressNavigation() {
                       <Group gap="sm" wrap="nowrap">
                         <Box style={{ flexShrink: 0 }}>
                           {isPassed ? (
-                            <CheckCircle size={20} color="#12b886" />
+                            <CheckCircle size={20} color="#22c55e" />
                           ) : (
                             <Circle
                               size={20}
-                              color={isActive ? "#228be6" : "#5c5f66"}
-                              fill={isActive ? "#228be6" : "transparent"}
+                              color={isActive ? "#e8a020" : "#3a3a40"}
+                              fill={isActive ? "#e8a020" : "transparent"}
                             />
                           )}
                         </Box>
                         <Box style={{ flex: 1 }}>
                           <Text
-                            size="xs"
+                            size="sm"
                             fw={600}
-                            c={isActive ? "blue" : isPassed ? "teal" : "dimmed"}
+                            style={{
+                              color: isActive
+                                ? "#e8a020"
+                                : isPassed
+                                  ? "#22c55e"
+                                  : "#707070",
+                            }}
                           >
                             {section.title}
                           </Text>
                           <Text
                             size="xs"
-                            c={isActive ? "white" : "dimmed"}
                             lineClamp={1}
+                            style={{ color: isActive ? "#c0c0c0" : "#555" }}
                           >
                             {section.subtitle}
                           </Text>
@@ -166,7 +195,7 @@ export function ProgressNavigation() {
               </Stack>
             </motion.div>
           ) : (
-            <Text size="sm" fw={600} c="dimmed">
+            <Text size="sm" fw={600} style={{ color: "#707070" }}>
               YOUR JOURNEY
             </Text>
           )}
